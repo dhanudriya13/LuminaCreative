@@ -1,0 +1,93 @@
+---
+const services = [
+  {
+    title: 'UI/UX Consulting & Design',
+    tagline: 'Human-centered, research-driven',
+    description:
+      'User research, wireframing, high-fidelity prototypes, and scalable design systems grounded in cognitive psychology and HCI.',
+    points: ['User research & usability testing', 'Wireframes & interactive prototypes', 'Design systems & brand guidelines'],
+    icon: 'pen',
+  },
+  {
+    title: 'Static Web Development',
+    tagline: 'Blazing-fast & ultra-secure',
+    description:
+      'SEO-optimized landing pages and corporate sites that load instantly, rank higher, and stay secure by design.',
+    points: ['Core Web Vitals optimization', 'SEO & accessibility built-in', 'Global CDN & HTTPS delivery'],
+    icon: 'bolt',
+  },
+  {
+    title: 'Dynamic Web Development',
+    tagline: 'Custom logic, real data',
+    description:
+      'Custom web applications, database integrations, and scalable platforms engineered for growth and reliability.',
+    points: ['Custom web apps & APIs', 'Database & backend integration', 'Scalable, maintainable architecture'],
+    icon: 'stack',
+  },
+];
+---
+
+<section id="services" class="relative py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-xs font-bold uppercase tracking-[0.2em] text-brand-600">Our Services</p>
+      <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+        Full-spectrum digital expertise
+      </h2>
+      <p class="mt-4 text-lg text-slate-600">
+        From the first user interview to the final deploy — one partner for
+        strategy, design, and engineering.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-3">
+      {
+        services.map((s) => (
+          <article
+            class="group relative flex flex-col rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-1.5 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-600/10"
+          >
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-600 text-white shadow-lg shadow-brand-600/25 transition group-hover:scale-105">
+              {s.icon === 'pen' && (
+                <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l7-7 3 3-7 7-3-3zM18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5zM2 2l7.586 7.586" />
+                </svg>
+              )}
+              {s.icon === 'bolt' && (
+                <svg class="h-7 w-7" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M13 2 3 14h7l-1 8 11-13h-7l1-7z" />
+                </svg>
+              )}
+              {s.icon === 'stack' && (
+                <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 7l8-4 8 4-8 4-8-4zM4 12l8 4 8-4M4 17l8 4 8-4" />
+                </svg>
+              )}
+            </div>
+
+            <h3 class="mt-6 text-xl font-bold text-slate-900">{s.title}</h3>
+            <p class="mt-1 text-sm font-semibold text-brand-600">{s.tagline}</p>
+            <p class="mt-3 text-slate-600">{s.description}</p>
+
+            <ul class="mt-6 space-y-2.5 border-t border-slate-100 pt-6">
+              {s.points.map((p) => (
+                <li class="flex items-start gap-2.5 text-sm text-slate-600">
+                  <svg class="mt-0.5 h-5 w-5 shrink-0 text-brand-500" viewBox="0 0 24 24" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.7 7.3l-5.2 5.2a1 1 0 01-1.4 0L7.4 11.8a1 1 0 111.4-1.4l2 2 4.5-4.5a1 1 0 111.4 1.4z" clip-rule="evenodd" />
+                  </svg>
+                  {p}
+                </li>
+              ))}
+            </ul>
+
+            <a href="#contact" class="mt-7 inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 transition group-hover:gap-2.5">
+              Request this service
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5-5 5M6 12h12" />
+              </svg>
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
