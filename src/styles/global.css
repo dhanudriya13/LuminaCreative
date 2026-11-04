@@ -14,13 +14,29 @@
   --color-brand-900: #2b1e45;
   --color-brand-950: #1b1130;
 
+  /* Semantic tokens */
+  --color-ink: #101827;
+  --color-electric: #2563eb;
+  --color-accent: #8b5cf6;
+  --color-cloud: #f8fafc;
+  --color-line: #e2e8f0;
+  --color-muted: #475569;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-danger: #dc2626;
+
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, sans-serif;
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-script: "Poppins", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 1.25rem;
+  --radius-pill: 9999px;
 }
 
 html {
   scroll-behavior: smooth;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -29,8 +45,87 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--color-brand-200);
+  color: var(--color-brand-950);
+}
+
 section[id] {
   scroll-margin-top: 5.5rem;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  border-radius: var(--radius-pill);
+  background: var(--color-brand-700);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: transform 150ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.field-control {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: #1e293b;
+  outline: none;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.field-control::placeholder {
+  color: #94a3b8;
+}
+
+.field-control:focus {
+  border-color: var(--color-brand-500);
+  box-shadow: 0 0 0 4px var(--color-brand-100);
+}
+
+.field-control:disabled {
+  cursor: not-allowed;
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.field-hint {
+  margin-top: 0.375rem;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.field-error {
+  margin-top: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-danger);
 }
 
 /* Subtle radial glows used behind hero / CTA sections */
@@ -77,6 +172,16 @@ section[id] {
   html {
     scroll-behavior: auto;
   }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
   .animate-fade-up {
     animation: none;
   }

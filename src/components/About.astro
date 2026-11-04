@@ -1,57 +1,49 @@
 ---
-const pillars = [
-  {
-    title: 'Human-Centered Design',
-    text: 'Empathy first — we design around real users, not assumptions.',
-  },
-  {
-    title: 'Full-Spectrum Development',
-    text: 'From static sites to dynamic platforms, we build what your goals demand.',
-  },
-  {
-    title: 'Rigorous Standards',
-    text: 'Performance, security, and accessibility are engineered in from day one.',
-  },
-];
+import { homeContent } from '../content/home';
+import Container from './ui/Container.astro';
+import SectionHeading from './ui/SectionHeading.astro';
+
+const content = homeContent.about;
 ---
 
 <section id="about" class="relative overflow-hidden bg-gradient-to-b from-white via-brand-50/50 to-white py-20 sm:py-28">
   <div class="glow left-1/2 top-0 h-72 w-72 -translate-x-1/2 bg-brand-200/50"></div>
 
-  <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+  <Container class="relative">
     <div class="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
       <div>
-        <p class="text-xs font-bold uppercase tracking-[0.2em] text-brand-600">About Us</p>
-        <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
-          A studio built on <span class="font-script text-brand-600">curiosity</span> &amp; craft
-        </h2>
+        <SectionHeading
+          eyebrow={content.eyebrow}
+          heading={content.heading}
+          accent={content.headingAccent}
+          align="left"
+        />
+
         <p class="mt-5 text-lg leading-relaxed text-slate-600">
-          Lumina Creative Studio is an IT consultancy rooted in academic
-          foundations in Information Systems and Human-Computer Interaction.
-          We pair that rigor with hands-on engineering to deliver digital
-          experiences that are as beautiful as they are dependable.
+          {content.body}
         </p>
+
         <blockquote class="mt-7 border-l-4 border-brand-500 bg-white/70 p-5 text-slate-700 shadow-sm">
-          <p class="font-script text-2xl text-brand-600">“Bridging human psychology and technical precision.”</p>
-          <footer class="mt-2 text-sm font-semibold text-slate-500">— Our guiding philosophy</footer>
+          <p class="font-script text-2xl text-brand-600">“{content.quote}”</p>
+          <footer class="mt-2 text-sm font-semibold text-slate-500">{content.quoteFooter}</footer>
         </blockquote>
       </div>
 
       <div class="space-y-5">
         {
-          pillars.map((p, i) => (
+          content.pillars.map((pillar, index) => (
             <div class="flex items-start gap-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-brand-200 hover:shadow-lg">
               <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-600 text-base font-extrabold text-white">
-                {String(i + 1).padStart(2, '0')}
+                {String(index + 1).padStart(2, '0')}
               </span>
               <div>
-                <h3 class="text-lg font-bold text-slate-900">{p.title}</h3>
-                <p class="mt-1 text-slate-600">{p.text}</p>
+                <h3 class="text-lg font-bold text-slate-900">{pillar.title}</h3>
+                <p class="mt-1 text-slate-600">{pillar.text}</p>
               </div>
             </div>
           ))
         }
       </div>
     </div>
-  </div>
+  </Container>
 </section>

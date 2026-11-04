@@ -1,0 +1,19 @@
+---
+interface Props {
+  id: string;
+  name: string;
+  required?: boolean;
+  class?: string;
+}
+
+const { id, name, required = false, class: className } = Astro.props;
+---
+
+<select
+  id={id}
+  name={name}
+  required={required}
+  class:list={['field-control appearance-none', className]}
+>
+  <slot />
+</select>

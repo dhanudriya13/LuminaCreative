@@ -1,0 +1,33 @@
+---
+import About from '../About.astro';
+import Contact from '../Contact.astro';
+import Footer from '../Footer.astro';
+import Header from '../Header.astro';
+import Hero from '../Hero.astro';
+import Packages from '../Packages.astro';
+import Portfolio from '../Portfolio.astro';
+import Services from '../Services.astro';
+import WhyLumina from '../WhyLumina.astro';
+import { homeContent } from '../../content/home';
+import Layout from '../../layouts/Layout.astro';
+
+const content = homeContent;
+---
+
+<Layout
+  title={content.meta.title}
+  description={content.meta.description}
+  canonicalPath="/"
+>
+  <Header />
+  <main id="main-content">
+    <Hero />
+    <Services />
+    <Packages />
+    <WhyLumina />
+    <Portfolio />
+    <About />
+    <Contact />
+  </main>
+  <Footer />
+</Layout>

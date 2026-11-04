@@ -1,40 +1,23 @@
 ---
+import { siteConfig, whatsappUrl } from '../config/site';
+import { ui } from '../i18n/ui';
+import Container from './ui/Container.astro';
+
+const t = ui;
 const year = new Date().getFullYear();
 
 const links = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Contact', href: '#contact' },
-];
-
-const socials = [
-  {
-    name: 'LinkedIn',
-    href: '#',
-    icon: 'M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4V9h4v1.5A6 6 0 0116 8zM6 9H2v12h4V9zM4 7a2 2 0 100-4 2 2 0 000 4z',
-  },
-  {
-    name: 'GitHub',
-    href: '#',
-    icon: 'M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.56 9.56 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z',
-  },
-  {
-    name: 'Instagram',
-    href: '#',
-    icon: 'M12 4.32c2.5 0 2.8.01 3.79.05 1.07.05 1.65.23 2.03.38.51.2.88.44 1.26.82.38.38.62.75.82 1.26.15.38.33.96.38 2.03.04.99.05 1.29.05 3.79s-.01 2.8-.05 3.79c-.05 1.07-.23 1.65-.38 2.03-.2.51-.44.88-.82 1.26-.38.38-.75.62-1.26.82-.38.15-.96.33-2.03.38-.99.04-1.29.05-3.79.05s-2.8-.01-3.79-.05c-1.07-.05-1.65-.23-2.03-.38a3.4 3.4 0 01-1.26-.82 3.4 3.4 0 01-.82-1.26c-.15-.38-.33-.96-.38-2.03C4.33 14.8 4.32 14.5 4.32 12s.01-2.8.05-3.79c.05-1.07.23-1.65.38-2.03.2-.51.44-.88.82-1.26.38-.38.75-.62 1.26-.82.38-.15.96-.33 2.03-.38.99-.04 1.29-.05 3.79-.05zM12 2c-2.55 0-2.87.01-3.87.06-.99.05-1.66.2-2.26.43-.61.24-1.13.56-1.65 1.08-.52.52-.84 1.04-1.08 1.65-.23.6-.38 1.27-.43 2.26C2.01 8.13 2 8.45 2 11s.01 2.87.06 3.87c.05.99.2 1.66.43 2.26.24.61.56 1.13 1.08 1.65.52.52 1.04.84 1.65 1.08.6.23 1.27.38 2.26.43 1 .05 1.32.06 3.87.06s2.87-.01 3.87-.06c.99-.05 1.66-.2 2.26-.43.61-.24 1.13-.56 1.65-1.08.52-.52.84-1.04 1.08-1.65.23-.6.38-1.27.43-2.26.05-1 .06-1.32.06-3.87s-.01-2.87-.06-3.87c-.05-.99-.2-1.66-.43-2.26a4.5 4.5 0 00-1.08-1.65 4.5 4.5 0 00-1.65-1.08c-.6-.23-1.27-.38-2.26-.43C14.87 2.01 14.55 2 12 2zm0 4.16a5.84 5.84 0 100 11.68 5.84 5.84 0 000-11.68zM12 15.5a3.5 3.5 0 110-7 3.5 3.5 0 010 7z',
-  },
-  {
-    name: 'Dribbble',
-    href: '#',
-    icon: 'M12 2a10 10 0 100 20 10 10 0 000-20zm6.6 4.6a8.5 8.5 0 011.9 5.2c-.28-.06-3.1-.63-5.94-.28-.06-.15-.13-.3-.2-.46-.18-.4-.38-.8-.6-1.18 3.17-1.3 4.6-3.17 4.84-3.28zM12 3.5c2.17 0 4.15.81 5.66 2.14-.2.25-1.47 1.83-4.48 2.98a30 30 0 00-2.85-4.4c.54-.1 1.1-.16 1.67-.16zM9.1 5.1a38 38 0 012.83 4.36c-3.58.95-6.74.94-7.08.93A8.6 8.6 0 019.1 5.1zM3.5 12v-.28c.35.01 4.08.07 7.94-1.08.22.43.43.87.62 1.31l-.34.1c-3.98 1.28-6.1 4.79-6.3 5.12A8.5 8.5 0 013.5 12zM12 20.5a8.5 8.5 0 01-5.27-1.85c.16-.32 1.86-3.4 6.06-4.85l.06-.02a35.7 35.7 0 011.83 6.5 8.4 8.4 0 01-2.68.22zm4.25-1.05a37.6 37.6 0 00-1.73-6.06c2.6-.42 4.88.26 5.17.33a8.54 8.54 0 01-3.44 5.73z',
-  },
+  { label: t.nav.home, href: '/' },
+  { label: t.nav.about, href: '/#about' },
+  { label: t.nav.services, href: '/#services' },
+  { label: t.nav.packages, href: '/#packages' },
+  { label: t.nav.work, href: '/#work' },
+  { label: t.nav.contact, href: '/#contact' },
 ];
 ---
 
 <footer class="bg-brand-950 pt-16 text-brand-100/70">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+  <Container>
     <div class="grid gap-10 pb-12 md:grid-cols-[1.2fr_1fr_1fr]">
       <div>
         <img
@@ -45,62 +28,69 @@ const socials = [
           height="106"
         />
         <p class="mt-5 max-w-sm text-sm leading-relaxed">
-          IT consultancy specializing in human-centered UI/UX design and
-          end-to-end web development — for static and dynamic architectures.
+          {t.footer.positioning}
         </p>
-        <div class="mt-6 flex gap-3">
-          {
-            socials.map((s) => (
+
+        {siteConfig.socials.length > 0 && (
+          <div class="mt-6 flex gap-3">
+            {siteConfig.socials.map((social) => (
               <a
-                href={s.href}
-                aria-label={s.name}
+                href={social.href}
+                aria-label={social.name}
+                rel="noopener noreferrer"
                 class="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-brand-100/70 transition hover:border-brand-400/50 hover:bg-brand-600 hover:text-white"
               >
-                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d={s.icon} />
-                </svg>
+                <span class="text-xs font-bold">{social.name.slice(0, 1)}</span>
               </a>
-            ))
-          }
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
-      <div>
-        <h3 class="text-sm font-bold uppercase tracking-wide text-white">Explore</h3>
+      <nav aria-label={t.a11y.footerNav}>
+        <h3 class="text-sm font-bold uppercase tracking-wide text-white">{t.footer.explore}</h3>
         <ul class="mt-4 space-y-2.5">
           {
-            links.map((l) => (
+            links.map((link) => (
               <li>
-                <a href={l.href} class="text-sm transition hover:text-white">
-                  {l.label}
+                <a href={link.href} class="text-sm transition hover:text-white">
+                  {link.label}
                 </a>
               </li>
             ))
           }
         </ul>
-      </div>
+      </nav>
 
       <div>
-        <h3 class="text-sm font-bold uppercase tracking-wide text-white">Get in touch</h3>
+        <h3 class="text-sm font-bold uppercase tracking-wide text-white">{t.footer.getInTouch}</h3>
         <ul class="mt-4 space-y-2.5 text-sm">
           <li>
-            <a href="mailto:contact@luminacreative.tech" class="transition hover:text-white">
-              contact@luminacreative.tech
+            <a href={`mailto:${siteConfig.email}`} class="transition hover:text-white">
+              {siteConfig.email}
             </a>
           </li>
           <li>
-            <a href="https://wa.me/6287762951844" target="_blank" rel="noopener noreferrer" class="transition hover:text-white">
-              WhatsApp: +62 877-6295-1844
+            <a
+              href={whatsappUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="transition hover:text-white"
+            >
+              {t.footer.whatsapp}: {siteConfig.phone.display}
             </a>
           </li>
           <li>
-            <a href="https://glowcare-flax.vercel.app/" target="_blank" rel="noopener noreferrer" class="transition hover:text-white">
-              Featured work — Glow &amp; Grace
+            <a
+              href="/#work"
+              class="transition hover:text-white"
+            >
+              {t.footer.featuredWork}: Glow &amp; Grace
             </a>
           </li>
           <li>
-            <a href="#contact" class="transition hover:text-white">
-              Book a consultation →
+            <a href="/#contact" class="transition hover:text-white">
+              {t.cta.bookConsultation} →
             </a>
           </li>
         </ul>
@@ -108,8 +98,8 @@ const socials = [
     </div>
 
     <div class="flex flex-col items-center justify-between gap-3 border-t border-white/10 py-6 text-sm sm:flex-row">
-      <p>© {year} Lumina Creative Studio. All rights reserved.</p>
-      <p class="font-script text-lg text-brand-300">Design with light, built to perform.</p>
+      <p>© {year} {siteConfig.name}. {t.footer.rights}</p>
+      <p class="font-script text-lg text-brand-300">{t.footer.tagline}</p>
     </div>
-  </div>
+  </Container>
 </footer>

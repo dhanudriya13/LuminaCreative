@@ -1,0 +1,55 @@
+---
+interface Props {
+  eyebrow: string;
+  heading: string;
+  accent?: string;
+  intro?: string;
+  align?: 'left' | 'center';
+  tone?: 'light' | 'dark';
+}
+
+const {
+  eyebrow,
+  heading,
+  accent,
+  intro,
+  align = 'center',
+  tone = 'light',
+} = Astro.props;
+
+const isDark = tone === 'dark';
+---
+
+<div class:list={['max-w-2xl', align === 'center' ? 'mx-auto text-center' : 'text-left']}>
+  <p
+    class:list={[
+      'text-xs font-bold uppercase tracking-[0.2em]',
+      isDark ? 'text-brand-300' : 'text-brand-600',
+    ]}
+  >
+    {eyebrow}
+  </p>
+  <h2
+    class:list={[
+      'mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl',
+      isDark ? 'text-white' : 'text-slate-900',
+    ]}
+  >
+    {heading}
+    {accent && (
+      <span class:list={['font-script', isDark ? 'text-brand-300' : 'text-brand-600']}>
+        {' '}{accent}
+      </span>
+    )}
+  </h2>
+  {intro && (
+    <p
+      class:list={[
+        'mt-4 text-lg',
+        isDark ? 'text-brand-100/80' : 'text-slate-600',
+      ]}
+    >
+      {intro}
+    </p>
+  )}
+</div>

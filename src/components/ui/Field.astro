@@ -1,0 +1,27 @@
+---
+interface Props {
+  htmlFor: string;
+  label: string;
+  required?: boolean;
+  hint?: string;
+  error?: string;
+}
+
+const { htmlFor, label, required = false, hint, error } = Astro.props;
+---
+
+<div>
+  <label for={htmlFor} class="field-label">
+    {label}
+    {required && <span class="text-danger" aria-hidden="true"> *</span>}
+  </label>
+
+  <slot />
+
+  {hint && <p id={`${htmlFor}-hint`} class="field-hint">{hint}</p>}
+  {error && (
+    <p id={`${htmlFor}-error`} class="field-error" role="alert">
+      {error}
+    </p>
+  )}
+</div>
